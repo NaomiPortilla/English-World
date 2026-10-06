@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>English World | Aprende Inglés</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="logo">
+            🌎 English World
+        </div>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#vocabulario">Vocabulario</a>
+            <a href="#escritura">Escritura</a>
+            <a href="#pronunciacion">Pronunciación</a>
+            <a href="#frases">Frases</a>
+            <a href="#quiz">Quiz</a>
+        </nav>
+
+        <button id="modoBtn">🌙</button>
+    </header>
+
+
+    <!-- INICIO -->
+    <section id="inicio" class="hero">
+
+        <div class="hero-text">
+
+            <p class="mini-title">LEARN • PRACTICE • IMPROVE</p>
+
+            <h1>
+                Aprende inglés de una forma
+                <span>interactiva.</span>
+            </h1>
+
+            <p>
+                Aprende vocabulario, practica la escritura,
+                escucha la pronunciación y demuestra lo que
+                has aprendido con nuestros ejercicios.
+            </p>
+
+            <div class="botones">
+                <a href="#vocabulario" class="btn principal">
+                    Comenzar a aprender →
+                </a>
+
+                <a href="#quiz" class="btn secundario">
+                    Ir al quiz
+                </a>
+            </div>
+
+            <div class="estadisticas">
+
+                <div>
+                    <strong>5</strong>
+                    <span>Categorías</span>
+                </div>
+
+                <div>
+                    <strong>20+</strong>
+                    <span>Palabras</span>
+                </div>
+
+                <div>
+                    <strong>8</strong>
+                    <span>Preguntas</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="tarjeta-inicio">
+
+            <div class="emoji-grande">🌎</div>
+
+            <h2>Hello!</h2>
+
+            <p>
+                Tu viaje para aprender inglés
+                comienza aquí.
+            </p>
+
+            <div class="barra">
+                <div id="barraProgreso"></div>
+            </div>
+
+            <small id="textoProgreso">
+                0% de progreso
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <!-- VOCABULARIO -->
+    <section id="vocabulario" class="seccion">
+
+        <div class="titulo-seccion">
+
+            <p class="mini-title">VOCABULARY</p>
+
+            <h2>Aprende vocabulario 📚</h2>
+
+            <p>
+                Selecciona una categoría y aprende nuevas
+                palabras en inglés.
+            </p>
+
+        </div>
+
+
+        <div class="categorias">
+
+            <button onclick="cambiarCategoria('animales')">
+                🐾 Animales
+            </button>
+
+            <button onclick="cambiarCategoria('comida')">
+                🍎 Comida
+            </button>
+
+            <button onclick="cambiarCategoria('colores')">
+                🎨 Colores
+            </button>
+
+            <button onclick="cambiarCategoria('familia')">
+                👨‍👩‍👧 Familia
+            </button>
+
+            <button onclick="cambiarCategoria('escuela')">
+                🏫 Escuela
+            </button>
+
+        </div>
+
+
+        <div class="tarjeta-vocabulario">
+
+            <div class="imagen-palabra" id="imagenPalabra">
+                🍎
+            </div>
+
+            <div class="informacion-palabra">
+
+                <p class="etiqueta">
+                    PALABRA EN INGLÉS
+                </p>
+
+                <h3 id="palabraIngles">
+                    Apple
+                </h3>
+
+                <p class="traduccion" id="palabraEspanol">
+                    Manzana
+                </p>
+
+                <p class="ejemplo" id="ejemplo">
+                    "I eat an apple every day."
+                </p>
+
+                <div class="botones">
+
+                    <button
+                        class="btn principal"
+                        onclick="escucharPalabra()">
+                        🔊 Escuchar
+                    </button>
+
+                    <button
+                        class="btn secundario"
+                        onclick="siguientePalabra()">
+                        Siguiente →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ESCRITURA -->
+    <section id="escritura" class="seccion fondo">
+
+        <div class="titulo-seccion">
+
+            <p class="mini-title">
+                WRITING PRACTICE
+            </p>
+
+            <h2>Practica escritura ✍️</h2>
+
+            <p>
+                Mira la palabra en español y escribe
+                su equivalente en inglés.
+            </p>
+
+        </div>
+
+
+        <div class="tarjeta-practica">
+
+            <div class="emoji-practica" id="emojiEscritura">
+                🐶
+            </div>
+
+            <p class="etiqueta">
+                TRADUCE AL INGLÉS
+            </p>
+
+            <h3 id="palabraPregunta">
+                Perro
+            </h3>
+
+            <input
+                type="text"
+                id="respuesta"
+                placeholder="Escribe la palabra en inglés">
+
+            <button
+                class="btn principal boton-ancho"
+                onclick="comprobarRespuesta()">
+
+                Comprobar respuesta
+
+            </button>
+
+            <p id="resultado"></p>
+
+            <button
+                class="siguiente-texto"
+                onclick="siguienteEscritura()">
+
+                Siguiente palabra →
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRONUNCIACIÓN -->
+    <section id="pronunciacion" class="seccion">
+
+        <div class="titulo-seccion">
+
+            <p class="mini-title">
+                PRONUNCIATION
+            </p>
+
+            <h2>Practica la pronunciación 🔊</h2>
+
+            <p>
+                Escucha la palabra y repítela en voz alta.
+            </p>
+
+        </div>
+
+
+        <div class="dos-columnas">
+
+            <div class="tarjeta">
+
+                <div class="icono">
+                    🔊
+                </div>
+
+                <p class="etiqueta">
+                    PALABRA
+                </p>
+
+                <h3 id="palabraPronunciacion">
+                    Beautiful
+                </h3>
+
+                <p id="significadoPronunciacion">
+                    Bonito/a
+                </p>
+
+                <p class="guia">
+                    Aproximación:
+                    <strong id="guiaPronunciacion">
+                        biu-ti-ful
+                    </strong>
+                </p>
+
+                <button
+                    class="btn principal"
+                    onclick="escucharPronunciacion()">
+
+                    ▶ Escuchar
+
+                </button>
+
+                <button
+                    class="btn secundario"
+                    onclick="practicarPronunciacion()">
+
+                    ✓ Ya la practiqué
+
+                </button>
+
+                <p id="mensajePronunciacion"></p>
+
+            </div>
+
+
+            <div class="tarjeta">
+
+                <div class="icono">
+                    💡
+                </div>
+
+                <h3>
+                    Consejos para pronunciar
+                </h3>
+
+                <p>
+                    Escucha primero la palabra y después
+                    intenta repetirla en voz alta.
+                </p>
+
+                <ul>
+                    <li>Escucha la palabra.</li>
+                    <li>Repite lentamente.</li>
+                    <li>Practica varias veces.</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FRASES -->
+    <section id="frases" class="seccion fondo">
+
+        <div class="titulo-seccion">
+
+            <p class="mini-title">
+                USEFUL PHRASES
+            </p>
+
+            <h2>Frases útiles 💬</h2>
+
+            <p>
+                Aprende expresiones que puedes utilizar
+                en situaciones cotidianas.
+            </p>
+
+        </div>
+
+
+        <div class="frases">
+
+            <div class="frase">
+                <h3>Hello! How are you?</h3>
+                <p>¡Hola! ¿Cómo estás?</p>
+
+                <button
+                    class="btn secundario"
+                    onclick="hablar('Hello! How are you?')">
+
+                    🔊 Escuchar
+
+                </button>
+            </div>
+
+
+            <div class="frase">
+                <h3>Good morning!</h3>
+                <p>¡Buenos días!</p>
+
+                <button
+                    class="btn secundario"
+                    onclick="hablar('Good morning!')">
+
+                    🔊 Escuchar
+
+                </button>
+            </div>
+
+
+            <div class="frase">
+                <h3>Nice to meet you.</h3>
+                <p>Mucho gusto.</p>
+
+                <button
+                    class="btn secundario"
+                    onclick="hablar('Nice to meet you.')">
+
+                    🔊 Escuchar
+
+                </button>
+            </div>
+
+
+            <div class="frase">
+                <h3>Thank you very much.</h3>
+                <p>Muchas gracias.</p>
+
+                <button
+                    class="btn secundario"
+                    onclick="hablar('Thank you very much.')">
+
+                    🔊 Escuchar
+
+                </button>
+            </div>
+
+
+            <div class="frase">
+                <h3>Can you help me?</h3>
+                <p>¿Puedes ayudarme?</p>
+
+                <button
+                    class="btn secundario"
+                    onclick="hablar('Can you help me?')">
+
+                    🔊 Escuchar
+
+                </button>
+            </div>
+
+
+            <div class="frase">
+                <h3>See you later!</h3>
+                <p>¡Hasta luego!</p>
+
+                <button
+                    class="btn secundario"
+                    onclick="hablar('See you later!')">
+
+                    🔊 Escuchar
+
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZ -->
+    <section id="quiz" class="seccion">
+
+        <div class="titulo-seccion">
+
+            <p class="mini-title">
+                CHALLENGE
+            </p>
+
+            <h2>Quiz de inglés 🎮</h2>
+
+            <p>
+                Responde las preguntas y comprueba
+                cuánto has aprendido.
+            </p>
+
+        </div>
+
+
+        <div class="quiz">
+
+            <div class="quiz-superior">
+
+                <span id="contador">
+                    Pregunta 1 de 8
+                </span>
+
+                <span id="puntos">
+                    Puntos: 0
+                </span>
+
+            </div>
+
+
+            <div class="barra">
+                <div id="barraQuiz"></div>
+            </div>
+
+
+            <h3 id="pregunta">
+                ¿Qué significa "book"?
+            </h3>
+
+
+            <div id="respuestas" class="respuestas">
+
+                <button onclick="responder(0)">
+                    Casa
+                </button>
+
+                <button onclick="responder(1)">
+                    Libro
+                </button>
+
+                <button onclick="responder(2)">
+                    Agua
+                </button>
+
+                <button onclick="responder(3)">
+                    Perro
+                </button>
+
+            </div>
+
+
+            <p id="mensajeQuiz"></p>
+
+
+            <button
+                id="siguienteQuiz"
+                class="btn secundario oculto"
+                onclick="siguientePregunta()">
+
+                Siguiente pregunta →
+
+            </button>
+
+
+            <div id="resultadoQuiz" class="resultado-quiz oculto">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESO -->
+    <section id="progreso" class="seccion fondo">
+
+        <div class="titulo-seccion">
+
+            <p class="mini-title">
+                MY PROGRESS
+            </p>
+
+            <h2>Mi progreso 📊</h2>
+
+            <p>
+                Mira cómo avanzas mientras completas
+                las actividades.
+            </p>
+
+        </div>
+
+
+        <div class="progreso">
+
+            <div class="circulo" id="circulo">
+                0%
+            </div>
+
+            <h3>
+                ¡Sigue aprendiendo!
+            </h3>
+
+            <p id="mensajeProgreso">
+                Completa actividades para aumentar
+                tu progreso.
+            </p>
+
+
+            <div class="datos-progreso">
+
+                <div>
+                    ✍️ Escrituras correctas
+                    <strong id="escrituras">
+                        0
+                    </strong>
+                </div>
+
+                <div>
+                    🔊 Prácticas de pronunciación
+                    <strong id="pronunciaciones">
+                        0
+                    </strong>
+                </div>
+
+                <div>
+                    🎮 Mejor resultado del quiz
+                    <strong id="mejorQuiz">
+                        0/8
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+
+        <h3>
+            🌎 English World
+        </h3>
+
+        <p>
+            Proyecto académico de Tecnología e Informática.
+        </p>
+
+        <p>
+            © 2026 Naomi Natalia Portilla.
+            Todos los derechos reservados.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
