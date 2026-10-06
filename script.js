@@ -125,7 +125,21 @@ function cambiarCategoria(categoria) {
   categoriaActual = categoria;
   indicePalabra = 0;
 
+  marcarCategoriaActiva();
   mostrarPalabra();
+}
+
+
+function marcarCategoriaActiva() {
+
+  document.querySelectorAll(".categorias button").forEach((boton) => {
+
+    const activa =
+      boton.getAttribute("onclick").includes("'" + categoriaActual + "'");
+
+    boton.classList.toggle("activa", activa);
+    boton.setAttribute("aria-pressed", activa);
+  });
 }
 
 
@@ -231,7 +245,7 @@ function mostrarPronunciacion() {
     palabra.espanol;
 
   document.getElementById("guiaPronunciacion").textContent =
-    "Aproximación: " + palabra.guia;
+    palabra.guia;
 
   document.getElementById("mensajePronunciacion").textContent = "";
 }
@@ -607,6 +621,14 @@ document.getElementById("modoBtn").onclick = function() {
 
 // ---------- INICIO ----------
 
+document.getElementById("respuesta").addEventListener("keydown", (e) => {
+
+  if (e.key !== "Enter" || e.isComposing || e.keyCode === 229) return;
+
+  comprobarRespuesta();
+});
+
+marcarCategoriaActiva();
 mostrarPalabra();
 mostrarEscritura();
 mostrarPronunciacion();

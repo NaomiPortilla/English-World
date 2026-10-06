@@ -218,12 +218,13 @@ nav a:hover {
 
 .barra {
   height: 10px;
-  background: #e7ebf3;
+  background: var(--borde);
   border-radius: 20px;
   overflow: hidden;
+  margin-bottom: 8px;
 }
 
-.barra span {
+.barra > div {
   display: block;
   width: 0%;
   height: 100%;
@@ -539,15 +540,35 @@ nav a:hover {
   font-weight: bold;
 }
 
-.datos-progreso {
-  margin-top: 30px;
+.progreso {
+  text-align: center;
 }
 
-.datos-progreso p {
+.progreso h3 {
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
+
+.progreso > p {
+  color: var(--gris);
+}
+
+.datos-progreso {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.datos-progreso div {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 12px;
   padding: 15px;
   border-bottom: 1px solid var(--borde);
+}
+
+.datos-progreso div:last-child {
+  border-bottom: none;
 }
 
 .datos-progreso strong {
@@ -563,9 +584,65 @@ footer {
   color: #b4bdd0;
 }
 
-footer strong {
+footer h3 {
   color: white;
   font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+/* DETALLES */
+
+.categorias button.activa {
+  background: var(--azul);
+  border-color: var(--azul);
+  color: white;
+}
+
+body.oscuro .imagen-palabra {
+  background: linear-gradient(135deg, #1c2a52, #2a1f52);
+}
+
+.tarjeta .btn {
+  margin-top: 6px;
+  margin-right: 8px;
+}
+
+.tarjeta ul {
+  margin-top: 16px;
+  padding-left: 20px;
+  color: var(--gris);
+}
+
+.tarjeta ul li {
+  margin-bottom: 6px;
+}
+
+.frase .btn {
+  margin-top: 14px;
+}
+
+#mensajePronunciacion,
+#mensajeQuiz,
+#resultado {
+  margin-top: 14px;
+  font-weight: bold;
+}
+
+#siguienteQuiz {
+  margin-top: 16px;
+}
+
+.resultado-quiz .btn {
+  margin-top: 14px;
+}
+
+.btn:focus-visible,
+.categorias button:focus-visible,
+.respuestas button:focus-visible,
+nav a:focus-visible,
+#modoBtn:focus-visible {
+  outline: 3px solid var(--morado);
+  outline-offset: 2px;
 }
 
 /* RESPONSIVE */
