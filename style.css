@@ -1,629 +1,596 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --azul: #2457e6;
-  --azul-oscuro: #173da8;
-  --morado: #6c4ce8;
-  --verde: #16b89a;
-  --fondo: #f5f8ff;
-  --tarjeta: #ffffff;
-  --texto: #182238;
-  --gris: #667085;
-  --borde: #e4e9f2;
-  --sombra: 0 15px 35px rgba(30, 50, 100, 0.1);
-}
-
-body.oscuro {
-  --fondo: #0d1324;
-  --tarjeta: #151e34;
-  --texto: #f2f5ff;
-  --gris: #b4bdd0;
-  --borde: #28344e;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--fondo);
-  color: var(--texto);
-  line-height: 1.6;
-  transition: 0.3s;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button,
-input {
-  font: inherit;
-}
-
-/* HEADER */
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  padding: 14px 6%;
-  background: var(--tarjeta);
-  border-bottom: 1px solid var(--borde);
-}
-
-.logo {
-  font-size: 1.2rem;
-  font-weight: bold;
-  white-space: nowrap;
-}
-
-.logo span {
-  color: var(--azul);
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  flex: 1;
-}
-
-nav a {
-  color: var(--gris);
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-nav a:hover {
-  color: var(--azul);
-}
-
-#modoBtn {
-  border: 1px solid var(--borde);
-  background: var(--tarjeta);
-  color: var(--texto);
-  border-radius: 10px;
-  padding: 9px 12px;
-  cursor: pointer;
-}
-
-/* INICIO */
-
-.hero {
-  min-height: 620px;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  align-items: center;
-  gap: 60px;
-  padding: 80px 10%;
-  background:
-    radial-gradient(circle at 85% 20%, rgba(108, 76, 232, 0.15), transparent 28%),
-    radial-gradient(circle at 15% 20%, rgba(36, 87, 230, 0.13), transparent 25%);
-}
-
-.hero-text {
-  max-width: 700px;
-}
-
-.mini-title {
-  color: var(--azul);
-  font-weight: bold;
-  letter-spacing: 2px;
-  font-size: 0.8rem;
-}
-
-.hero h1 {
-  font-size: clamp(2.8rem, 6vw, 5rem);
-  line-height: 1;
-  margin: 15px 0;
-}
-
-.hero h1 span {
-  color: var(--azul);
-}
-
-.hero p {
-  color: var(--gris);
-  font-size: 1.1rem;
-}
-
-.botones {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-.btn {
-  display: inline-block;
-  border: none;
-  border-radius: 12px;
-  padding: 13px 20px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.2s;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.principal {
-  background: var(--azul);
-  color: white;
-}
-
-.principal:hover {
-  background: var(--azul-oscuro);
-}
-
-.secundario {
-  background: var(--tarjeta);
-  color: var(--texto);
-  border: 1px solid var(--borde);
-}
-
-.estadisticas {
-  display: flex;
-  gap: 40px;
-  margin-top: 40px;
-}
-
-.estadisticas div {
-  display: flex;
-  flex-direction: column;
-}
-
-.estadisticas strong {
-  font-size: 1.5rem;
-}
-
-.estadisticas span {
-  color: var(--gris);
-  font-size: 0.85rem;
-}
-
-.tarjeta-inicio {
-  padding: 40px;
-  text-align: center;
-  background: var(--tarjeta);
-  border: 1px solid var(--borde);
-  border-radius: 25px;
-  box-shadow: var(--sombra);
-}
-
-.emoji-grande {
-  font-size: 6rem;
-  margin-bottom: 15px;
-}
-
-.tarjeta-inicio h2 {
-  font-size: 2rem;
-}
-
-.tarjeta-inicio p {
-  color: var(--gris);
-  margin: 8px 0 20px;
-}
-
-.barra {
-  height: 10px;
-  background: #e7ebf3;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.barra span {
-  display: block;
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--azul), var(--morado));
-  transition: 0.4s;
-}
-
-.tarjeta-inicio small {
-  color: var(--gris);
-}
-
-/* SECCIONES */
-
-.seccion {
-  max-width: 1200px;
-  margin: auto;
-  padding: 85px 8%;
-}
-
-.titulo-seccion {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.titulo-seccion h2 {
-  font-size: 2.7rem;
-  margin: 8px 0;
-}
-
-.titulo-seccion p {
-  color: var(--gris);
-}
-
-/* CATEGORÍAS */
-
-.categorias {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
-.categorias button {
-  border: 1px solid var(--borde);
-  background: var(--tarjeta);
-  color: var(--texto);
-  border-radius: 30px;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.categorias button:hover {
-  background: var(--azul);
-  color: white;
-}
-
-/* VOCABULARIO */
-
-.tarjeta-vocabulario {
-  display: grid;
-  grid-template-columns: 0.7fr 1.3fr;
-  gap: 40px;
-  align-items: center;
-  padding: 45px;
-  background: var(--tarjeta);
-  border: 1px solid var(--borde);
-  border-radius: 22px;
-  box-shadow: var(--sombra);
-}
-
-.imagen-palabra {
-  display: grid;
-  place-items: center;
-  min-height: 230px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #eaf0ff, #f0eaff);
-  font-size: 7rem;
-}
-
-.informacion-palabra h3 {
-  font-size: 3rem;
-}
-
-.etiqueta {
-  color: var(--azul);
-  font-weight: bold;
-}
-
-.traduccion {
-  color: var(--gris);
-  font-size: 1.2rem;
-}
-
-.ejemplo {
-  margin: 20px 0;
-  padding: 15px;
-  border-left: 4px solid var(--verde);
-  background: rgba(22, 184, 154, 0.08);
-  color: var(--gris);
-  font-style: italic;
-}
-
-/* ESCRITURA */
-
-.tarjeta-practica {
-  max-width: 650px;
-  margin: auto;
-  padding: 40px;
-  text-align: center;
-  background: var(--tarjeta);
-  border: 1px solid var(--borde);
-  border-radius: 22px;
-  box-shadow: var(--sombra);
-}
-
-.emoji-practica {
-  font-size: 4.5rem;
-}
-
-.tarjeta-practica h3 {
-  font-size: 2.4rem;
-  margin: 10px 0 20px;
-}
-
-.tarjeta-practica input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 12px;
-  border: 2px solid var(--borde);
-  border-radius: 12px;
-  outline: none;
-  background: var(--fondo);
-  color: var(--texto);
-}
-
-.tarjeta-practica input:focus {
-  border-color: var(--azul);
-}
-
-.boton-ancho {
-  width: 100%;
-}
-
-.siguiente-texto {
-  margin-top: 12px;
-  background: none;
-  border: none;
-  color: var(--azul);
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.correcto {
-  color: var(--verde);
-  font-weight: bold;
-}
-
-.incorrecto {
-  color: #dc4c4c;
-  font-weight: bold;
-}
-
-/* PRONUNCIACIÓN */
-
-.dos-columnas {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-}
-
-.tarjeta {
-  padding: 35px;
-  background: var(--tarjeta);
-  border: 1px solid var(--borde);
-  border-radius: 22px;
-  box-shadow: var(--sombra);
-}
-
-.icono {
-  font-size: 2.5rem;
-}
-
-.tarjeta h3 {
-  font-size: 1.6rem;
-  margin: 8px 0;
-}
-
-.tarjeta p {
-  color: var(--gris);
-}
-
-.guia {
-  margin: 18px 0;
-  padding: 14px;
-  border-radius: 10px;
-  background: rgba(36, 87, 230, 0.08);
-}
-
-/* FRASES */
-
-.frases {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.frase {
-  padding: 25px;
-  background: var(--tarjeta);
-  border: 1px solid var(--borde);
-  border-radius: 18px;
-  box-shadow: var(--sombra);
-}
-
-.frase h3 {
-  color: var(--azul);
-}
-
-.frase p {
-  color: var(--gris);
-}
-
-/* QUIZ */
-
-.quiz {
-  max-width: 800px;
-  margin: auto;
-  padding: 35px;
-  background: var(--tarjeta);
-  border: 1px solid var(--borde);
-  border-radius: 22px;
-  box-shadow: var(--sombra);
-}
-
-.quiz-superior {
-  display: flex;
-  justify-content: space-between;
-  color: var(--gris);
-  font-weight: bold;
-}
-
-.quiz h3 {
-  margin: 30px 0 20px;
-  font-size: 1.5rem;
-}
-
-.respuestas {
-  display: grid;
-  gap: 12px;
-}
-
-.respuestas button {
-  padding: 15px;
-  text-align: left;
-  border: 1px solid var(--borde);
-  border-radius: 12px;
-  background: var(--fondo);
-  color: var(--texto);
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.respuestas button:hover {
-  border-color: var(--azul);
-}
-
-.respuesta-correcta {
-  background: rgba(22, 184, 154, 0.15) !important;
-  border-color: var(--verde) !important;
-}
-
-.respuesta-incorrecta {
-  background: rgba(220, 76, 76, 0.12) !important;
-  border-color: #dc4c4c !important;
-}
-
-.resultado-quiz {
-  margin-top: 20px;
-  padding: 20px;
-  text-align: center;
-  border-radius: 15px;
-  background: rgba(36, 87, 230, 0.08);
-}
-
-.oculto {
-  display: none !important;
-}
-
-/* PROGRESO */
-
-.progreso {
-  max-width: 850px;
-  margin: auto;
-  padding: 35px;
-  background: var(--tarjeta);
-  border: 1px solid var(--borde);
-  border-radius: 22px;
-  box-shadow: var(--sombra);
-}
-
-.circulo {
-  width: 110px;
-  height: 110px;
-  margin: auto;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--azul);
-  color: white;
-  font-size: 1.4rem;
-  font-weight: bold;
-}
-
-.datos-progreso {
-  margin-top: 30px;
-}
-
-.datos-progreso p {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  border-bottom: 1px solid var(--borde);
-}
-
-.datos-progreso strong {
-  color: var(--azul);
-}
-
-/* FOOTER */
-
-footer {
-  padding: 35px 8%;
-  text-align: center;
-  background: #0f172a;
-  color: #b4bdd0;
-}
-
-footer strong {
-  color: white;
-  font-size: 1.3rem;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
+'use strict';
+
+const UNITS_DATA = [
+  {
+    id: 1,
+    slug: 'hello',
+    shortName: 'Hello!',
+    title: '¡Aprende a saludar en inglés! 👋',
+    mapDesc: 'Saludos y despedidas básicas',
+    kicker: 'UNIDAD 1 DE 5 • GREETINGS',
+    subtitle: 'Los saludos nos ayudan a ser amables cuando llegamos a un lugar, conocemos a alguien o nos despedimos. Haz clic en Escuchar para practicar la pronunciación.',
+    mascotIntro: 'En inglés usamos palabras distintas según la hora del día o si estamos saludando o despidiéndonos. ¡Mira estas 4 palabras mágicas!',
+    quizTitle: '¡Demuestra lo que aprendiste! 🎯',
+    quizSubtitle: 'Responde correctamente estas 3 preguntas para desbloquear la siguiente unidad.',
+    doneTitle: '¡Excelente trabajo! 🎉',
+    doneSubtitle: 'Ya sabes saludar y despedirte en inglés: Hello, Good morning, Good night y Goodbye. Has desbloqueado la Unidad 2: Numbers.',
+    cards: [
+      { emoji: '👋😄', en: 'Hello! / Hi!', es: '¡Hola!', tip: 'Se usa en cualquier momento del día para saludar a amigos o profesores.', say: 'Hello! Hi!' },
+      { emoji: '🌅☀️', en: 'Good morning', es: 'Buenos días', tip: 'Lo decimos por la mañana cuando nos levantamos o llegamos a la escuela.', say: 'Good morning' },
+      { emoji: '🌙⭐', en: 'Good night', es: 'Buenas noches', tip: 'Se usa antes de irnos a dormir o al despedirnos de noche.', say: 'Good night' },
+      { emoji: '🙋‍♂️✨', en: 'Goodbye / Bye', es: '¡Adiós!', tip: 'Lo decimos cuando nos vamos de un lugar y nos despedimos.', say: 'Goodbye! Bye!' }
+    ],
+    quiz: [
+      {
+        question: '1. Cuando te levantas por la mañana 🌅 y ves a tu familia, ¿cómo los saludas?',
+        options: ['Good morning', 'Good night', 'Goodbye'],
+        correct: 0,
+        say: 'Good morning'
+      },
+      {
+        question: '2. Si conoces a un nuevo amigo en el parque 👋, ¿qué le dices para decir "¡Hola!"?',
+        options: ['Good night', 'Hello!', 'Bye'],
+        correct: 1,
+        say: 'Hello!'
+      },
+      {
+        question: '3. Ya es hora de irse a casa y te despides de tus amigos 🙋‍♂️, ¿qué palabra usas?',
+        options: ['Good morning', 'Hello', 'Goodbye'],
+        correct: 2,
+        say: 'Goodbye'
+      }
+    ]
+  },
+  {
+    id: 2,
+    slug: 'numbers',
+    shortName: 'Numbers',
+    title: '¡Aprendamos a contar en inglés! 🔢',
+    mapDesc: 'Los números del 1 al 10',
+    kicker: 'UNIDAD 2 DE 5 • NUMBERS',
+    subtitle: 'Los números nos sirven para contar juguetes, decir nuestra edad y jugar. Observa las estrellas y presiona Escuchar en cada número.',
+    mascotIntro: 'Vamos a practicar los números del 1 al 10 en inglés. ¡Cuenta los dibujos de cada tarjeta y repite su nombre en voz alta!',
+    quizTitle: '¡A contar juntos! 🎯',
+    quizSubtitle: 'Responde estas 3 preguntas sencillas sobre los números para avanzar a la Unidad 3.',
+    doneTitle: '¡Increíble, ya sabes contar! 🎉',
+    doneSubtitle: 'Dominaste los números del 1 al 10 en inglés. Ahora pasemos directo a la Unidad 3: Colors.',
+    cards: [
+      { badge: '1', emoji: '⭐', en: 'One', es: 'Uno', say: 'One' },
+      { badge: '2', emoji: '⭐⭐', en: 'Two', es: 'Dos', say: 'Two' },
+      { badge: '3', emoji: '⭐⭐⭐', en: 'Three', es: 'Tres', say: 'Three' },
+      { badge: '4', emoji: '⭐⭐⭐⭐', en: 'Four', es: 'Cuatro', say: 'Four' },
+      { badge: '5', emoji: '⭐⭐⭐⭐⭐', en: 'Five', es: 'Cinco', say: 'Five' },
+      { badge: '6', emoji: '🍎🍎🍎🍎🍎🍎', en: 'Six', es: 'Seis', say: 'Six' },
+      { badge: '7', emoji: '🍎🍎🍎🍎🍎🍎🍎', en: 'Seven', es: 'Siete', say: 'Seven' },
+      { badge: '8', emoji: '🍎🍎🍎🍎🍎🍎🍎🍎', en: 'Eight', es: 'Ocho', say: 'Eight' },
+      { badge: '9', emoji: '🍎🍎🍎🍎🍎🍎🍎🍎🍎', en: 'Nine', es: 'Nueve', say: 'Nine' },
+      { badge: '10', emoji: '🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎', en: 'Ten', es: 'Diez', say: 'Ten' }
+    ],
+    quiz: [
+      {
+        question: '1. ¿Cuántos cohetes ves aquí? 🚀 🚀 🚀',
+        options: ['Two (2)', 'Three (3)', 'Five (5)'],
+        correct: 1,
+        say: 'Three'
+      },
+      {
+        question: '2. Si tienes 5 dedos en una mano ✋, ¿cómo se dice 5 en inglés?',
+        options: ['Five', 'Four', 'Seven'],
+        correct: 0,
+        say: 'Five'
+      },
+      {
+        question: '3. Cuenta los globos: 🎈🎈🎈🎈🎈🎈🎈 ¿Qué número es?',
+        options: ['Six (6)', 'Eight (8)', 'Seven (7)'],
+        correct: 2,
+        say: 'Seven'
+      }
+    ]
+  },
+  {
+    id: 3,
+    slug: 'colors',
+    shortName: 'Colors',
+    title: '¡Descubre los colores en inglés! 🎨',
+    mapDesc: '6 colores básicos del mundo',
+    kicker: 'UNIDAD 3 DE 5 • COLORS',
+    subtitle: 'Los colores hacen que todo lo que nos rodea sea más divertido. Mira cada círculo de color, relaciona el dibujo y haz clic en Escuchar.',
+    mascotIntro: 'Hoy vamos a pintar el mundo con 6 colores básicos en inglés. ¡Fíjate en el color de cada círculo y repite su nombre!',
+    quizTitle: '¡Adivina el color! 🎯',
+    quizSubtitle: 'Responde correctamente estas 3 preguntas sobre los colores para pasar a la Unidad 4.',
+    doneTitle: '¡Eres un artista de los colores! 🎉',
+    doneSubtitle: 'Ya sabes decir Red, Blue, Yellow, Green, Orange y Purple en inglés. Ahora pasemos directo a la Unidad 4: Animals.',
+    cards: [
+      { swatch: '#ff4d4d', emoji: '🍎', en: 'Red', es: 'Rojo', tip: 'Como una manzana dulce o un camión de bomberos.', say: 'Red' },
+      { swatch: '#3b82f6', emoji: '🐳', en: 'Blue', es: 'Azul', tip: 'Como el cielo despejado y el agua del mar.', say: 'Blue' },
+      { swatch: '#facc15', emoji: '☀️', en: 'Yellow', es: 'Amarillo', tip: 'Brillante como el sol o un delicioso banano.', say: 'Yellow' },
+      { swatch: '#22c55e', emoji: '🐸', en: 'Green', es: 'Verde', tip: 'Como las hojas de los árboles y las ranitas.', say: 'Green' },
+      { swatch: '#fb923c', emoji: '🍊', en: 'Orange', es: 'Naranja', tip: 'Como una naranja jugosa o una zanahoria.', say: 'Orange' },
+      { swatch: '#a855f7', emoji: '🍇', en: 'Purple', es: 'Morado', tip: 'Como un racimo de uvas o nuestra página web.', say: 'Purple' }
+    ],
+    quiz: [
+      {
+        question: '1. ¿De qué color es el sol brillante ☀️?',
+        options: ['Blue', 'Yellow', 'Purple'],
+        correct: 1,
+        say: 'Yellow'
+      },
+      {
+        question: '2. Una rana saltarina 🐸 y el pasto del parque son de color...',
+        options: ['Green', 'Red', 'Orange'],
+        correct: 0,
+        say: 'Green'
+      },
+      {
+        question: '3. Si ves una manzana roja 🍎, ¿cómo dices ese color en inglés?',
+        options: ['Yellow', 'Blue', 'Red'],
+        correct: 2,
+        say: 'Red'
+      }
+    ]
+  },
+  {
+    id: 4,
+    slug: 'animals',
+    shortName: 'Animals',
+    title: '¡Conoce los animales en inglés! 🐾',
+    mapDesc: 'Animales amigos y de la selva',
+    kicker: 'UNIDAD 4 DE 5 • ANIMALS',
+    subtitle: 'Los animales son nuestros amigos en la naturaleza y en casa. Mira cada dibujo, aprende su sonido y presiona Escuchar para decir su nombre en inglés.',
+    mascotIntro: 'Hoy conoceremos 6 animales súper divertidos en inglés. ¡Escucha cómo se pronuncia cada uno y repítelo en voz alta!',
+    quizTitle: '¡Adivina el animal! 🎯',
+    quizSubtitle: 'Responde correctamente estas 3 preguntas sobre los animales para avanzar a la última unidad.',
+    doneTitle: '¡Eres un gran explorador de animales! 🎉',
+    doneSubtitle: 'Ya sabes decir Dog, Cat, Bird, Fish, Lion y Rabbit en inglés. ¡Solo falta la Unidad 5: Food!',
+    cards: [
+      { emoji: '🐶', en: 'Dog', es: 'Perro', tip: 'Dice "¡Guau, guau!" y le encanta jugar con su pelota.', say: 'Dog' },
+      { emoji: '🐱', en: 'Cat', es: 'Gato', tip: 'Dice "¡Miau!" y le gusta dormir al sol.', say: 'Cat' },
+      { emoji: '🐦', en: 'Bird', es: 'Pájaro', tip: 'Tiene plumas, alas y vuela alto por el cielo.', say: 'Bird' },
+      { emoji: '🐟', en: 'Fish', es: 'Pez', tip: 'Nada feliz bajo el agua en ríos y océanos.', say: 'Fish' },
+      { emoji: '🦁', en: 'Lion', es: 'León', tip: 'Tiene una gran melena y ruge muy fuerte: "¡Grrr!".', say: 'Lion' },
+      { emoji: '🐰', en: 'Rabbit', es: 'Conejo', tip: 'Tiene orejas largas y da grandes saltos.', say: 'Rabbit' }
+    ],
+    quiz: [
+      {
+        question: '1. ¿Qué animal tiene orejas largas y salta muy alto 🐰?',
+        options: ['Fish', 'Rabbit', 'Lion'],
+        correct: 1,
+        say: 'Rabbit'
+      },
+      {
+        question: '2. ¿Cómo se dice "Perro" 🐶 en inglés?',
+        options: ['Dog', 'Cat', 'Bird'],
+        correct: 0,
+        say: 'Dog'
+      },
+      {
+        question: '3. Este animal vive en el agua y nada con sus aletas 🐟, ¿cuál es?',
+        options: ['Bird', 'Dog', 'Fish'],
+        correct: 2,
+        say: 'Fish'
+      }
+    ]
+  },
+  {
+    id: 5,
+    slug: 'food',
+    shortName: 'Food',
+    title: '¡Aprende los alimentos en inglés! 🍎🥪',
+    mapDesc: 'Comidas y bebidas favoritas',
+    kicker: 'UNIDAD 5 DE 5 • FOOD',
+    subtitle: 'Saber decir los nombres de la comida y las bebidas en inglés te ayuda a pedir tus alimentos favoritos. Mira cada dibujo y presiona Escuchar.',
+    mascotIntro: 'En esta última unidad aprenderemos 6 alimentos y bebidas muy ricos en inglés. ¡Escucha su pronunciación y repítela!',
+    quizTitle: '¡El reto final de la comida! 🎯',
+    quizSubtitle: 'Responde correctamente estas 3 preguntas sobre los alimentos para completar todo el curso de English World.',
+    doneTitle: '¡Completaste English World! 🎉🌎',
+    doneSubtitle: 'Aprendiste saludos (Hello), números (Numbers), colores (Colors), animales (Animals) y comida (Food) en inglés. ¡Estamos muy orgullosos de ti!',
+    cards: [
+      { emoji: '🍎', en: 'Apple', es: 'Manzana', tip: 'Una fruta roja y crujiente muy saludable para la lonchera.', say: 'Apple' },
+      { emoji: '🍌', en: 'Banana', es: 'Banano / Plátano', tip: 'Una fruta amarilla y dulce que nos da mucha energía.', say: 'Banana' },
+      { emoji: '🍞', en: 'Bread', es: 'Pan', tip: 'Lo comemos en el desayuno o para preparar un sándwich.', say: 'Bread' },
+      { emoji: '🥛', en: 'Milk', es: 'Leche', tip: 'Una bebida blanca y nutritiva que ayuda a crecer fuerte.', say: 'Milk' },
+      { emoji: '💧', en: 'Water', es: 'Agua', tip: 'La bebida más importante para refrescarnos después de jugar.', say: 'Water' },
+      { emoji: '🍕', en: 'Pizza', es: 'Pizza', tip: '¡Se escribe y se dice casi igual en inglés y en español!', say: 'Pizza' }
+    ],
+    quiz: [
+      {
+        question: '1. ¿Cómo se dice "Leche" 🥛 en inglés?',
+        options: ['Water', 'Milk', 'Bread'],
+        correct: 1,
+        say: 'Milk'
+      },
+      {
+        question: '2. Si tienes sed después de correr y tomas un vaso de agua 💧, ¿qué pides?',
+        options: ['Water', 'Apple', 'Banana'],
+        correct: 0,
+        say: 'Water'
+      },
+      {
+        question: '3. ¿Cuál de estas frutas es roja y se dice "Apple" 🍎?',
+        options: ['Banano 🍌', 'Pan 🍞', 'Manzana 🍎'],
+        correct: 2,
+        say: 'Apple'
+      }
+    ]
   }
+];
 
-  .tarjeta-vocabulario,
-  .dos-columnas {
-    grid-template-columns: 1fr;
-  }
+const STORAGE_KEY = 'englishWorldAppStateV1';
 
-  .frases {
-    grid-template-columns: repeat(2, 1fr);
+let appState = {
+  name: '',
+  mascot: 'Pikachu',
+  mascotEmoji: '⚡🐭',
+  unlockedUnit: 1,
+  completedUnits: []
+};
+
+let activeUnit = null;
+let quizAnswers = {};
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      appState = { ...appState, ...parsed };
+    }
+  } catch (e) {
+    // Ignorar errores de almacenamiento privado
   }
 }
 
-@media (max-width: 650px) {
-  header {
-    flex-wrap: wrap;
-  }
-
-  nav {
-    order: 3;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-
-  .hero {
-    padding: 60px 6%;
-  }
-
-  .seccion {
-    padding: 60px 6%;
-  }
-
-  .hero h1 {
-    font-size: 2.8rem;
-  }
-
-  .estadisticas {
-    gap: 20px;
-  }
-
-  .frases {
-    grid-template-columns: 1fr;
-  }
-
-  .tarjeta-vocabulario,
-  .tarjeta-practica,
-  .quiz,
-  .progreso {
-    padding: 25px;
-  }
-
-  .imagen-palabra {
-    font-size: 5rem;
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+  } catch (e) {
+    // Ignorar errores de almacenamiento privado
   }
 }
+
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
+function showScreen(screenId, progressPercent) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  document.getElementById('globalProgress').style.width = progressPercent + '%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderLearningMap() {
+  const displayName = appState.name || 'Explorador';
+  document.getElementById('mapTitle').textContent = `¡Hola, ${displayName}! 🗺️`;
+  document.getElementById('guideStatusText').textContent = `Tu guía: ${appState.mascotEmoji} ${appState.mascot}`;
+
+  const completedCount = appState.completedUnits.length;
+  document.getElementById('progressPill').textContent = `${completedCount} de 5 completadas`;
+
+  const container = document.getElementById('unitsMapContainer');
+  container.innerHTML = '';
+
+  UNITS_DATA.forEach((unit, idx) => {
+    const isCompleted = appState.completedUnits.includes(unit.id);
+    const isUnlocked = unit.id <= appState.unlockedUnit;
+
+    const node = document.createElement('div');
+    node.className = 'unit-node ' + (isCompleted ? 'completed' : isUnlocked ? 'current' : 'locked');
+
+    const num = document.createElement('div');
+    num.className = 'node-number';
+    num.textContent = isCompleted ? '✓' : unit.id;
+
+    const info = document.createElement('div');
+    info.className = 'unit-info';
+    const strong = document.createElement('strong');
+    strong.textContent = `Unidad ${unit.id}: ${unit.shortName}`;
+    const small = document.createElement('small');
+    small.textContent = isCompleted ? '¡Completada! Puedes repasarla' : isUnlocked ? unit.mapDesc : 'Bloqueada • Completa la anterior';
+    info.append(strong, small);
+
+    node.append(num, info);
+
+    if (isUnlocked) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'unit-open';
+      btn.textContent = isCompleted ? 'Repasar' : 'Empezar →';
+      btn.addEventListener('click', () => startLesson(unit.id));
+      node.appendChild(btn);
+    } else {
+      const lock = document.createElement('span');
+      lock.textContent = '🔒';
+      lock.setAttribute('aria-label', 'Unidad bloqueada');
+      node.appendChild(lock);
+    }
+
+    container.appendChild(node);
+
+    const line = document.createElement('div');
+    line.className = 'path-line';
+    container.appendChild(line);
+  });
+
+  // Meta final
+  const finalNode = document.createElement('div');
+  finalNode.className = 'unit-node final-node ' + (completedCount === 5 ? 'completed' : '');
+  finalNode.innerHTML = `
+    <div class="node-number">🏆</div>
+    <div class="unit-info">
+      <strong>Gran Trofeo English World</strong>
+      <small>${completedCount === 5 ? '¡Felicidades! Completaste todo el curso.' : 'Completa las 5 unidades para ganar tu trofeo.'}</small>
+    </div>
+  `;
+  container.appendChild(finalNode);
+
+  const mapProgress = 40 + (completedCount * 12);
+  showScreen('screen-learning', mapProgress);
+}
+
+function startLesson(unitId) {
+  activeUnit = UNITS_DATA.find(u => u.id === unitId);
+  if (!activeUnit) return;
+
+  quizAnswers = { 0: false, 1: false, 2: false };
+
+  // Reset vistas internas
+  document.getElementById('view-learn').classList.remove('hidden');
+  document.getElementById('view-quiz').classList.add('hidden');
+  document.getElementById('view-done').classList.add('hidden');
+  document.getElementById('unitProgress').style.width = '50%';
+
+  // Rellenar sección de aprendizaje
+  document.getElementById('learnKicker').textContent = activeUnit.kicker;
+  document.getElementById('lessonMainTitle').textContent = activeUnit.title;
+  document.getElementById('learnSubtitle').textContent = activeUnit.subtitle;
+  document.getElementById('learnMascotEmoji').textContent = appState.mascotEmoji;
+  document.getElementById('learnMascotSpeech').innerHTML =
+    `<strong>¡Hola, ${appState.name || 'Explorador'}! Soy ${appState.mascot}.</strong><br>${activeUnit.mascotIntro}`;
+
+  const cardsContainer = document.getElementById('vocabCardsContainer');
+  cardsContainer.innerHTML = '';
+
+  activeUnit.cards.forEach(item => {
+    const card = document.createElement('article');
+    card.className = 'vocab-card';
+
+    if (item.badge) {
+      const badge = document.createElement('div');
+      badge.className = 'num-badge';
+      badge.textContent = item.badge;
+      card.appendChild(badge);
+    }
+
+    if (item.swatch) {
+      const swatch = document.createElement('div');
+      swatch.className = 'color-swatch';
+      swatch.style.background = item.swatch;
+      swatch.textContent = item.emoji;
+      card.appendChild(swatch);
+    } else {
+      const emoji = document.createElement('span');
+      emoji.className = 'vocab-emoji';
+      emoji.setAttribute('aria-hidden', 'true');
+      emoji.textContent = item.emoji;
+      card.appendChild(emoji);
+    }
+
+    const en = document.createElement('div');
+    en.className = 'vocab-en';
+    en.textContent = item.en;
+
+    const es = document.createElement('div');
+    es.className = 'vocab-es';
+    es.textContent = item.es;
+
+    card.append(en, es);
+
+    if (item.tip) {
+      const tip = document.createElement('p');
+      tip.className = 'vocab-tip';
+      tip.textContent = item.tip;
+      card.appendChild(tip);
+    }
+
+    const audioBtn = document.createElement('button');
+    audioBtn.type = 'button';
+    audioBtn.className = 'btn-audio';
+    audioBtn.textContent = '🔊 Escuchar';
+    audioBtn.addEventListener('click', () => speak(item.say));
+    card.appendChild(audioBtn);
+
+    cardsContainer.appendChild(card);
+  });
+
+  showScreen('screen-lesson', 75);
+}
+
+function goToQuizView() {
+  document.getElementById('view-learn').classList.add('hidden');
+  document.getElementById('view-quiz').classList.remove('hidden');
+  document.getElementById('unitProgress').style.width = '75%';
+
+  document.getElementById('quizKicker').textContent = `PRÁCTICA • UNIDAD ${activeUnit.id}`;
+  document.getElementById('quizTitle').textContent = activeUnit.quizTitle;
+  document.getElementById('quizSubtitle').textContent = activeUnit.quizSubtitle;
+  document.getElementById('quizMascotEmoji').textContent = appState.mascotEmoji;
+  document.getElementById('quizMascotHint').textContent =
+    'Lee cada pista con atención y elige la respuesta correcta en inglés. ¡Tú puedes!';
+
+  const finishBtn = document.getElementById('btnFinishUnit');
+  finishBtn.disabled = true;
+  finishBtn.textContent = activeUnit.id === 5
+    ? 'Completar Unidad 5 y Finalizar Curso ⭐'
+    : `Completar Unidad ${activeUnit.id} ⭐`;
+
+  const qContainer = document.getElementById('quizQuestionsContainer');
+  qContainer.innerHTML = '';
+
+  activeUnit.quiz.forEach((q, qIdx) => {
+    const box = document.createElement('div');
+    box.className = 'question-box';
+
+    const title = document.createElement('p');
+    title.className = 'question-title';
+    title.textContent = q.question;
+
+    const grid = document.createElement('div');
+    grid.className = 'options-grid';
+
+    const fb = document.createElement('p');
+    fb.className = 'feedback-msg';
+
+    q.options.forEach((optText, optIdx) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'option-btn';
+      btn.textContent = optText;
+
+      btn.addEventListener('click', () => {
+        grid.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct', 'wrong'));
+        const isCorrect = optIdx === q.correct;
+
+        if (isCorrect) {
+          btn.classList.add('correct');
+          fb.textContent = '✅ ¡Muy bien! Respuesta correcta.';
+          fb.style.color = '#0b6e64';
+          speak(q.say);
+          quizAnswers[qIdx] = true;
+          document.getElementById('quizMascotHint').innerHTML =
+            `<strong>¡Genial, ${appState.name || 'Explorador'}!</strong> Esa es la respuesta correcta.`;
+        } else {
+          btn.classList.add('wrong');
+          fb.textContent = '❌ ¡Casi! Fíjate bien e inténtalo de nuevo.';
+          fb.style.color = '#9e0b1c';
+          quizAnswers[qIdx] = false;
+          document.getElementById('quizMascotHint').innerHTML =
+            '<strong>¡No te rindas!</strong> Recuerda lo que vimos en las tarjetas anteriores.';
+        }
+
+        const allCorrect = quizAnswers[0] && quizAnswers[1] && quizAnswers[2];
+        finishBtn.disabled = !allCorrect;
+      });
+
+      grid.appendChild(btn);
+    });
+
+    box.append(title, grid, fb);
+    qContainer.appendChild(box);
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function finishActiveUnit() {
+  if (!activeUnit) return;
+
+  if (!appState.completedUnits.includes(activeUnit.id)) {
+    appState.completedUnits.push(activeUnit.id);
+    appState.completedUnits.sort((a, b) => a - b);
+  }
+  if (activeUnit.id < 5 && appState.unlockedUnit < activeUnit.id + 1) {
+    appState.unlockedUnit = activeUnit.id + 1;
+  }
+  saveState();
+
+  document.getElementById('view-quiz').classList.add('hidden');
+  document.getElementById('view-done').classList.remove('hidden');
+  document.getElementById('unitProgress').style.width = '100%';
+
+  const isFinal = activeUnit.id === 5;
+  const finalBadge = document.getElementById('finalCourseBadge');
+  finalBadge.classList.toggle('hidden', !isFinal);
+
+  document.getElementById('doneEmoji').textContent = isFinal ? '🏆🌎🎉' : `${appState.mascotEmoji} 🎉`;
+  document.getElementById('doneKicker').textContent = isFinal
+    ? `¡FELICITACIONES, ${(appState.name || 'CAMPEÓN').toUpperCase()}!`
+    : `¡UNIDAD ${activeUnit.id} COMPLETADA!`;
+  document.getElementById('doneTitle').textContent = activeUnit.doneTitle;
+  document.getElementById('doneSubtitle').textContent = activeUnit.doneSubtitle;
+
+  const nextBtn = document.getElementById('btnNextUnitOrMap');
+  if (!isFinal) {
+    const nextUnit = UNITS_DATA.find(u => u.id === activeUnit.id + 1);
+    nextBtn.textContent = `Continuar a la Unidad ${nextUnit.id}: ${nextUnit.shortName} →`;
+    nextBtn.onclick = () => startLesson(nextUnit.id);
+    speak(`Great job! You completed unit ${activeUnit.id}!`);
+  } else {
+    nextBtn.textContent = 'Volver al mapa principal 🏠';
+    nextBtn.onclick = () => renderLearningMap();
+    speak('Congratulations! You completed all five units of English World!');
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Eventos iniciales
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+
+  // Seleccionar mascota guardada si existe
+  document.querySelectorAll('#mascotGrid .character').forEach(btn => {
+    const isMatch = btn.dataset.mascot === appState.mascot;
+    btn.classList.toggle('selected', isMatch);
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#mascotGrid .character').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      appState.mascot = btn.dataset.mascot;
+      appState.mascotEmoji = btn.dataset.emoji;
+    });
+  });
+
+  if (appState.name) {
+    document.getElementById('studentNameInput').value = appState.name;
+  }
+
+  document.getElementById('btnStartAdventure').addEventListener('click', () => {
+    if (appState.name) {
+      renderLearningMap();
+    } else {
+      showScreen('screen-setup', 25);
+    }
+  });
+
+  document.getElementById('btnBackToWelcome').addEventListener('click', () => {
+    showScreen('screen-start', 10);
+  });
+
+  document.getElementById('btnGoToMap').addEventListener('click', () => {
+    const nameVal = document.getElementById('studentNameInput').value.trim();
+    const errorEl = document.getElementById('setupError');
+    if (!nameVal) {
+      errorEl.textContent = 'Por favor escribe tu nombre para continuar.';
+      document.getElementById('studentNameInput').focus();
+      return;
+    }
+    errorEl.textContent = '';
+    appState.name = nameVal;
+    saveState();
+    renderLearningMap();
+  });
+
+  document.getElementById('btnChangeProfile').addEventListener('click', () => {
+    showScreen('screen-setup', 25);
+  });
+
+  document.getElementById('btnResetProgress').addEventListener('click', () => {
+    appState.unlockedUnit = 1;
+    appState.completedUnits = [];
+    saveState();
+    renderLearningMap();
+  });
+
+  document.getElementById('btnBackToMap').addEventListener('click', () => {
+    renderLearningMap();
+  });
+
+  document.getElementById('btnGoToQuiz').addEventListener('click', goToQuizView);
+  document.getElementById('btnFinishUnit').addEventListener('click', finishActiveUnit);
+});
