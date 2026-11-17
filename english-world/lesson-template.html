@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#6558e8">
+  <title>English World | Hello!</title>
+  <link rel="stylesheet" href="preview.css">
+  <script src="lesson.js" defer></script>
+  <style>
+    .hello-layout{min-height:100vh;display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;align-items:stretch;padding:24px;box-sizing:border-box;transition:grid-template-columns .18s ease}
+    .hello-sidebar{background:#fff;border:1px solid #e7e5fb;border-radius:20px;padding:18px 12px;box-shadow:0 8px 28px rgba(49,42,120,.06);display:flex;flex-direction:column;gap:8px;align-self:start;position:sticky;top:24px;min-width:0}
+    .hello-sidebar-title{font-size:15px;font-weight:800;letter-spacing:.08em;color:#6558e8;padding:4px 10px 12px}
+    .hello-sidebar-toggle{display:flex;align-items:center;justify-content:center;width:40px;height:40px;flex:none;border:1px solid #e7e5fb;border-radius:12px;background:#f8f7ff;color:#6558e8;cursor:pointer;margin:0 0 8px 0}
+    .hello-sidebar-toggle svg{width:20px;height:20px}
+    .hello-layout.sidebar-collapsed{grid-template-columns:48px minmax(0,1fr)}
+    .hello-layout.sidebar-collapsed .hello-sidebar{padding:8px 4px;align-items:center}
+    .hello-layout.sidebar-collapsed .hello-sidebar-title,.hello-layout.sidebar-collapsed .hello-sidebar-link{display:none}
+    .hello-layout.sidebar-collapsed .hello-sidebar-toggle{margin:0}
+    .hello-sidebar-link{display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;border:0;border-radius:12px;padding:12px 10px;text-align:left;text-decoration:none;font:inherit;font-size:14px;font-weight:650;color:#393653;background:transparent}
+    .hello-sidebar-link svg{width:19px;height:19px;flex:none;color:#6558e8}
+    .hello-sidebar-link.route-link{background:#f0efff;color:#5145ce}
+    .hello-content{min-width:0;display:flex;align-items:flex-start;justify-content:center}
+    .hello-content .screen{width:100%;padding:0;box-sizing:border-box}
+    .hello-content .lesson-panel{width:100%;box-sizing:border-box}
+    @media(max-width:700px){.hello-layout,.hello-layout.sidebar-collapsed{grid-template-columns:minmax(0,1fr);gap:14px;padding:12px}.hello-sidebar{position:static;padding:10px;display:flex;flex-direction:row;align-items:center;gap:6px}.hello-sidebar-title{display:none}.hello-sidebar-toggle{margin:0}.hello-sidebar-link{flex:1;justify-content:center;padding:10px 8px;font-size:12px;gap:7px}.hello-sidebar-link svg{width:17px;height:17px}.hello-layout.sidebar-collapsed .hello-sidebar{padding:8px}.hello-layout.sidebar-collapsed .hello-sidebar-toggle{margin:0}.hello-content .screen{padding:0}}
+    @media(max-width:390px){.hello-sidebar-link{font-size:11px;gap:5px;padding:9px 5px}}
+    .teaching-content{display:grid;gap:14px;text-align:center}
+    .teaching-visual{font-size:40px;line-height:1.2;padding:12px;background:#f5f3ff;border-radius:16px}
+    .hello-illustration{display:block;width:100%;max-width:520px;height:auto;margin:0 auto 4px;border-radius:16px}
+    .teaching-item-head{display:flex;align-items:center;gap:10px}
+    .teaching-icon{font-size:28px;min-width:34px;text-align:center}
+    .mini-audio{margin-left:auto;border:1px solid #e7e5fb;background:#f8f7ff;color:#5145ce;border-radius:10px;padding:7px 10px;cursor:pointer;font:inherit;font-size:13px;font-weight:700}
+    .lesson-navigation{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+    .lesson-navigation button{min-width:120px}
+    .answer-option{min-height:48px}
+    .story-note{padding:10px 12px;border-radius:12px;background:#fff7df;text-align:left;color:#66552a}
+    .story-note strong{color:#5145ce}
+    @media(max-width:480px){.lesson-navigation button{min-width:0;flex:1}.teaching-visual{font-size:32px;padding:8px}}
+    .teaching-item{padding:12px;border:1px solid #e7e5fb;border-radius:14px;background:#fff;text-align:left}
+    .teaching-item strong{font-size:20px;color:#5145ce}
+    .teaching-item p{margin:4px 0 0;color:#514d68}
+    .dialogue-row{display:flex;gap:10px;align-items:flex-start;text-align:left;padding:10px;border-radius:12px;background:#f7f6ff}
+    .dialogue-avatar{font-size:30px}
+    .lesson-count{font-weight:800;color:#6558e8;background:#f0efff;border-radius:999px;padding:7px 14px;display:inline-block;margin:10px auto 14px}
+    #lessonTitle{color:#5145ce;letter-spacing:-.025em}
+    #lessonInstructions{max-width:560px;margin:0 auto 12px;line-height:1.55}
+    .teaching-content{gap:12px}
+    .teaching-visual{background:#fff7df;border:2px dashed #f2d47a;border-radius:18px;padding:14px;font-size:30px}
+    .hello-illustration{max-height:225px;object-fit:cover;border:3px solid #fff;box-shadow:0 7px 20px rgba(49,42,120,.09)}
+    .teaching-item{border:2px solid #eeebff;border-radius:18px;padding:14px;box-shadow:0 4px 12px rgba(49,42,120,.035)}
+    .teaching-item strong{font-size:21px;color:#5145ce}
+    .teaching-item p{line-height:1.45}
+    .phrase-example{font-size:14px;color:#68617e!important;padding-left:44px}
+    .pron-guide{font-weight:700;color:#277b70!important;background:#e9faf4;border-radius:10px;padding:8px 10px;margin-top:8px!important}
+    .mini-audio{background:#f0efff;border:1px solid #dedaff;white-space:nowrap}
+    .dialogue-row{background:#f7f6ff;border:1px solid #e8e4ff;border-radius:16px;padding:12px}
+    .dialogue-row p{margin:4px 0 8px;color:#514d68}
+    .dialogue-row strong{color:#5145ce}
+    .story-note{background:#fff7df;border:1px solid #f4e4a8;border-radius:14px;line-height:1.5}
+    .answer-options{gap:10px}
+    .answer-option{border:2px solid #e7e5fb;border-radius:14px;background:#fff;font-weight:700;color:#393653;transition:transform .12s,border-color .12s}
+    .answer-option:hover,.answer-option.chosen{border-color:#6558e8;background:#f3f1ff;transform:translateY(-1px)}
+    .answer-feedback{border-radius:14px;line-height:1.5}
+    .exercise-actions{margin-top:12px}
+    .lesson-navigation{padding-top:12px;border-top:1px solid #eeecfb}
+    @media(max-width:480px){.hello-illustration{max-height:155px}.teaching-item{padding:10px}.phrase-example{padding-left:0}.mini-audio{font-size:12px;padding:7px}.teaching-item strong{font-size:18px}}
+  
+    .lesson-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0}
+    .lesson-tab{border:1px solid #e7e5fb;border-radius:12px;background:#fff;color:#514d68;padding:10px 7px;font:inherit;font-size:13px;font-weight:750;cursor:pointer}
+    .lesson-tab.active{background:#f0efff;border-color:#6558e8;color:#5145ce}
+    .writing-area{display:grid;gap:10px;max-width:440px;margin:12px auto}
+    .writing-area input{width:100%;box-sizing:border-box;border:2px solid #e7e5fb;border-radius:12px;padding:13px;font:inherit}
+    .pron-practiced{background:#e9faf4!important;border-color:#70cbb2!important}
+    @media(max-width:650px){.lesson-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.lesson-tab{font-size:12px}}
+  </style>
+</head>
+<body>
+  <div class="hello-layout" id="helloLayout">
+    <aside class="hello-sidebar" id="helloSidebar" aria-label="Navegación de English World">
+      <button class="hello-sidebar-toggle" id="helloSidebarToggle" type="button" aria-label="Cerrar barra lateral" aria-expanded="true" title="Cerrar barra lateral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      <div class="hello-sidebar-title">ENGLISH WORLD</div>
+      <a class="hello-sidebar-link route-link" href="preview.html?screen=learning">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19V5l6 3 6-3 6 3v14l-6-3-6 3-6-3Z"/><path d="M9 8v11M15 5v11"/></svg>
+        <span>Ver ruta de aprendizaje</span>
+      </a>
+    </aside>
+    <main class="hello-content">
+      <section class="screen active" id="helloLessonScreen" aria-labelledby="lessonTitle">
+        <div class="step-card lesson-panel" style="max-width:760px;margin:auto">
+        <p class="kicker" id="lessonKicker">UNIDAD 1 · HELLO!</p>
+        <h1 id="lessonTitle">¡Vamos a saludar!</h1>
+        <p class="lesson-instructions" id="lessonInstructions">Aprende saludos y presentaciones en inglés.</p>
+        <nav class="lesson-tabs" aria-label="Secciones de la lección">
+          <button type="button" class="lesson-tab active" data-tab="vocabulary">📚 Vocabulary</button>
+          <button type="button" class="lesson-tab" data-tab="writing">✍️ Practice Writing</button>
+          <button type="button" class="lesson-tab" data-tab="pronunciation">🔊 Pronunciation</button>
+          <button type="button" class="lesson-tab" data-tab="quiz">🧠 Quiz</button>
+        </nav>
+        <div class="lesson-progress"><span id="lessonProgressBar"></span></div>
+        <p class="lesson-count" id="lessonCount">Vocabulary</p>
+        <div class="exercise-card" id="exerciseCard">
+          <div id="teachingContent" class="teaching-content"></div>
+          <p class="exercise-prompt" id="exercisePrompt" hidden></p>
+          <div class="writing-area" id="writingArea" hidden>
+            <input id="writingAnswer" type="text" autocomplete="off" placeholder="Escribe tu respuesta" aria-label="Escribe tu respuesta">
+            <button class="btn primary" id="checkWriting" type="button">Comprobar respuesta</button>
+            <button class="btn ghost" id="nextWriting" type="button" hidden>Siguiente palabra →</button>
+          </div>
+          <div class="answer-options" id="answerOptions" hidden></div>
+          <p class="answer-feedback" id="answerFeedback" aria-live="polite"></p>
+          <div class="exercise-actions"><button class="btn primary" id="retryBtn" type="button" hidden>Intentar de nuevo</button></div>
+          <div class="lesson-navigation">
+            <button class="btn ghost" id="previousStepBtn" type="button">← Anterior sección</button>
+            <button class="btn primary" id="nextActivityBtn" type="button">Siguiente sección →</button>
+          </div>
+        </div>
+        <div class="review-finish" id="reviewFinish" hidden>
+          <h2>¡Lo hiciste genial!</h2>
+          <p id="completionMessage">¡Terminaste Hello! Ya puedes volver a tu ruta de aprendizaje.</p>
+          <button class="btn primary" id="finishUnitBtn" type="button">Volver a la ruta</button>
+        </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

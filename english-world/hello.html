@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6558e8">
+  <title>English World | Unidad 1: Hello! (Saludos)</title>
+  <style>
+    :root {
+      --primary: #6558e8;
+      --primary-dark: #4f42d4;
+      --secondary: #ff9f1c;
+      --success: #2ec4b6;
+      --danger: #e71d36;
+      --bg: #f4f3ff;
+      --card: #ffffff;
+      --text: #2b2d42;
+      --muted: #6c757d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 780px;
+    }
+
+    /* Barra superior */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .btn-back {
+      background: #fff;
+      border: 2px solid #e0defa;
+      color: var(--primary);
+      padding: 8px 16px;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn-back:hover { background: #eceaff; }
+
+    .progress-wrap {
+      flex: 1;
+      height: 12px;
+      background: #e0defa;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 50%;
+      background: linear-gradient(90deg, var(--primary), #8b80f9);
+      transition: width 0.4s ease;
+    }
+
+    /* Tarjeta principal */
+    .lesson-card {
+      background: var(--card);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: 0 12px 30px rgba(101, 88, 232, 0.12);
+    }
+
+    .kicker {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin: 4px 0 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    /* Guía de mascota */
+    .mascot-banner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #f0eeff;
+      border: 2px dashed #bdb5ff;
+      border-radius: 20px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+    .mascot-banner img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+    }
+    .mascot-speech {
+      font-size: 0.98rem;
+      line-height: 1.4;
+    }
+
+    /* Tarjetas de vocabulario (Explicación) */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .vocab-card {
+      background: #faf9ff;
+      border: 2px solid #e6e3fc;
+      border-radius: 20px;
+      padding: 18px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .vocab-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+
+    .vocab-emoji {
+      font-size: 3rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .vocab-en {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .vocab-es {
+      font-weight: 700;
+      color: var(--text);
+      margin: 4px 0;
+    }
+
+    .vocab-tip {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .btn-audio {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.88rem;
+    }
+    .btn-audio:hover { background: var(--primary-dark); }
+
+    /* Botones de navegación de sección */
+    .btn-primary {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 15px 22px;
+      border-radius: 16px;
+      font-size: 1.08rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-primary:disabled {
+      background: #c5c1f5;
+      cursor: not-allowed;
+    }
+
+    /* Sección Quiz (3 preguntas) */
+    .hidden { display: none; }
+
+    .question-box {
+      background: #faf9ff;
+      border: 2px solid #e6e3fc;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .question-title {
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+    }
+
+    .option-btn {
+      background: #fff;
+      border: 2px solid #dcd8fa;
+      border-radius: 14px;
+      padding: 12px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .option-btn:hover { border-color: var(--primary); background: #f3f1ff; }
+    .option-btn.correct {
+      background: #d8f8f4;
+      border-color: var(--success);
+      color: #0b6e64;
+    }
+    .option-btn.wrong {
+      background: #ffe3e7;
+      border-color: var(--danger);
+      color: #9e0b1c;
+    }
+
+    .feedback-msg {
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    /* Pantalla final de celebración */
+    .celebrate-box {
+      text-align: center;
+      padding: 20px 10px;
+    }
+    .celebrate-box img {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <div class="top-bar">
+      <a href="preview.html#learning" class="btn-back">← Volver al mapa</a>
+      <div class="progress-wrap" aria-label="Progreso de la unidad">
+        <div class="progress-fill" id="unitProgress"></div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 1: EXPLICACIÓN INICIAL -->
+    <section class="lesson-card" id="section-learn">
+      <p class="kicker">UNIDAD 1 DE 5 • GREETINGS</p>
+      <h1>¡Aprende a saludar en inglés! 👋</h1>
+      <p class="subtitle">Los saludos nos ayudan a ser amables cuando llegamos a un lugar, conocemos a alguien o nos despedimos. Haz clic en <strong>Escuchar</strong> para practicar la pronunciación.</p>
+
+      <div class="mascot-banner">
+        <img src="assets/mascots/pikachu-happy.png" alt="Mascota Pikachu saludando" onerror="this.style.display='none'">
+        <div class="mascot-speech">
+          <strong>¡Hola! Soy tu guía.</strong><br>
+          En inglés usamos palabras distintas según la hora del día o si estamos saludando o despidiéndonos. ¡Mira estas 4 palabras mágicas!
+        </div>
+      </div>
+
+      <div class="vocab-grid">
+        <article class="vocab-card">
+          <span class="vocab-emoji" aria-hidden="true">👋😄</span>
+          <div class="vocab-en">Hello! / Hi!</div>
+          <div class="vocab-es">¡Hola!</div>
+          <p class="vocab-tip">Se usa en cualquier momento del día para saludar a amigos o profesores.</p>
+          <button class="btn-audio" type="button" onclick="speak('Hello! Hi!')">🔊 Escuchar</button>
+        </article>
+
+        <article class="vocab-card">
+          <span class="vocab-emoji" aria-hidden="true">🌅☀️</span>
+          <div class="vocab-en">Good morning</div>
+          <div class="vocab-es">Buenos días</div>
+          <p class="vocab-tip">Lo decimos por la mañana cuando nos levantamos o llegamos a la escuela.</p>
+          <button class="btn-audio" type="button" onclick="speak('Good morning')">🔊 Escuchar</button>
+        </article>
+
+        <article class="vocab-card">
+          <span class="vocab-emoji" aria-hidden="true">🌙⭐</span>
+          <div class="vocab-en">Good night</div>
+          <div class="vocab-es">Buenas noches</div>
+          <p class="vocab-tip">Se usa antes de irnos a dormir o al despedirnos de noche.</p>
+          <button class="btn-audio" type="button" onclick="speak('Good night')">🔊 Escuchar</button>
+        </article>
+
+        <article class="vocab-card">
+          <span class="vocab-emoji" aria-hidden="true">🙋‍♂️✨</span>
+          <div class="vocab-en">Goodbye / Bye</div>
+          <div class="vocab-es">¡Adiós!</div>
+          <p class="vocab-tip">Lo decimos cuando nos vamos de un lugar y nos despedimos.</p>
+          <button class="btn-audio" type="button" onclick="speak('Goodbye! Bye!')">🔊 Escuchar</button>
+        </article>
+      </div>
+
+      <button class="btn-primary" type="button" onclick="goToQuiz()">¡Listo! Ir a las 3 preguntas →</button>
+    </section>
+
+    <!-- SECCIÓN 2: PRÁCTICA (3 PREGUNTAS SENCILLAS) -->
+    <section class="lesson-card hidden" id="section-quiz">
+      <p class="kicker">PRÁCTICA • UNIDAD 1</p>
+      <h1>¡Demuestra lo que aprendiste! 🎯</h1>
+      <p class="subtitle">Responde correctamente estas 3 preguntas para desbloquear la siguiente unidad.</p>
+
+      <div class="mascot-banner">
+        <img id="quizMascot" src="assets/mascots/pikachu-think.png" alt="Mascota pensando" onerror="this.style.display='none'">
+        <div class="mascot-speech" id="mascotHint">
+          Lee con calma cada situación y elige la respuesta correcta en inglés. ¡Tú puedes!
+        </div>
+      </div>
+
+      <!-- Pregunta 1 -->
+      <div class="question-box" id="q1">
+        <p class="question-title">1. Cuando te levantas por la mañana 🌅 y ves a tu familia, ¿cómo los saludas?</p>
+        <div class="options-grid">
+          <button class="option-btn" type="button" onclick="checkAnswer(1, this, true)">Good morning</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(1, this, false)">Good night</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(1, this, false)">Goodbye</button>
+        </div>
+        <p class="feedback-msg" id="fb1"></p>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="question-box" id="q2">
+        <p class="question-title">2. Si conoces a un nuevo amigo en el parque 👋, ¿qué le dices para decir "¡Hola!"?</p>
+        <div class="options-grid">
+          <button class="option-btn" type="button" onclick="checkAnswer(2, this, false)">Good night</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(2, this, true)">Hello!</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(2, this, false)">Bye</button>
+        </div>
+        <p class="feedback-msg" id="fb2"></p>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="question-box" id="q3">
+        <p class="question-title">3. Ya es hora de irse a casa y te despides de tus amigos 🙋‍♂️, ¿qué palabra usas?</p>
+        <div class="options-grid">
+          <button class="option-btn" type="button" onclick="checkAnswer(3, this, false)">Good morning</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(3, this, false)">Hello</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(3, this, true)">Goodbye</button>
+        </div>
+        <p class="feedback-msg" id="fb3"></p>
+      </div>
+
+      <button class="btn-primary" id="btnFinish" type="button" disabled onclick="finishUnit()">Completar Unidad 1 ⭐</button>
+    </section>
+
+    <!-- SECCIÓN 3: CELEBRACIÓN -->
+    <section class="lesson-card hidden" id="section-done">
+      <div class="celebrate-box">
+        <img src="assets/mascots/pikachu-celebrate.png" alt="Mascota celebrando" onerror="this.style.display='none'">
+        <p class="kicker">¡UNIDAD COMPLETADA!</p>
+        <h1>¡Excelente trabajo! 🎉</h1>
+        <p class="subtitle">Ya sabes saludar y despedirte en inglés: <strong>Hello, Good morning, Good night y Goodbye</strong>. Has desbloqueado la Unidad 2: <strong>Numbers</strong>.</p>
+        <button class="btn-primary" type="button" onclick="window.location.href='numbers.html'">Continuar a la Unidad 2: Numbers →</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const answeredCorrectly = { 1: false, 2: false, 3: false };
+
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function goToQuiz() {
+      document.getElementById('section-learn').classList.add('hidden');
+      document.getElementById('section-quiz').classList.remove('hidden');
+      document.getElementById('unitProgress').style.width = '75%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function checkAnswer(qNum, btn, isCorrect) {
+      const box = document.getElementById('q' + qNum);
+      const fb = document.getElementById('fb' + qNum);
+      const mascotImg = document.getElementById('quizMascot');
+      const mascotHint = document.getElementById('mascotHint');
+
+      // Limpiar estilos previos en esa pregunta
+      box.querySelectorAll('.option-btn').forEach(b => {
+        b.classList.remove('correct', 'wrong');
+      });
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        fb.textContent = '✅ ¡Muy bien! Respuesta correcta.';
+        fb.style.color = '#0b6e64';
+        speak(btn.textContent);
+        answeredCorrectly[qNum] = true;
+        mascotImg.src = 'assets/mascots/pikachu-happy.png';
+        mascotHint.innerHTML = '<strong>¡Genial!</strong> Vas por excelente camino.';
+      } else {
+        btn.classList.add('wrong');
+        fb.textContent = '❌ ¡Casi! Inténtalo de nuevo.';
+        fb.style.color = '#9e0b1c';
+        answeredCorrectly[qNum] = false;
+        mascotImg.src = 'assets/mascots/pikachu-encourage.png';
+        mascotHint.innerHTML = '<strong>¡No te rindas!</strong> Recuerda lo que vimos en las tarjetas anteriores.';
+      }
+
+      const allDone = answeredCorrectly[1] && answeredCorrectly[2] && answeredCorrectly[3];
+      document.getElementById('btnFinish').disabled = !allDone;
+    }
+
+    function finishUnit() {
+      // Guardar progreso para desbloquear la unidad 1 (Numbers)
+      try {
+        const saved = JSON.parse(sessionStorage.getItem('englishWorldProgress') || '{"unlocked":0}');
+        if ((saved.unlocked || 0) < 1) {
+          saved.unlocked = 1;
+          sessionStorage.setItem('englishWorldProgress', JSON.stringify(saved));
+        }
+      } catch (e) {}
+
+      document.getElementById('section-quiz').classList.add('hidden');
+      document.getElementById('section-done').classList.remove('hidden');
+      document.getElementById('unitProgress').style.width = '100%';
+      speak('Great job! You completed unit one!');
+    }
+  </script>
+</body>
+</html>

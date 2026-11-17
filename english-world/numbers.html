@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6558e8">
+  <title>English World | Unidad 2: Numbers (Números)</title>
+  <style>
+    :root {
+      --primary: #6558e8;
+      --primary-dark: #4f42d4;
+      --secondary: #ff9f1c;
+      --success: #2ec4b6;
+      --danger: #e71d36;
+      --bg: #f4f3ff;
+      --card: #ffffff;
+      --text: #2b2d42;
+      --muted: #6c757d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 820px;
+    }
+
+    /* Barra superior */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .btn-back {
+      background: #fff;
+      border: 2px solid #e0defa;
+      color: var(--primary);
+      padding: 8px 16px;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn-back:hover { background: #eceaff; }
+
+    .progress-wrap {
+      flex: 1;
+      height: 12px;
+      background: #e0defa;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 50%;
+      background: linear-gradient(90deg, var(--primary), #8b80f9);
+      transition: width 0.4s ease;
+    }
+
+    /* Tarjeta principal */
+    .lesson-card {
+      background: var(--card);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: 0 12px 30px rgba(101, 88, 232, 0.12);
+    }
+
+    .kicker {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin: 4px 0 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    /* Guía de mascota */
+    .mascot-banner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #f0eeff;
+      border: 2px dashed #bdb5ff;
+      border-radius: 20px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+    .mascot-banner img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+    }
+    .mascot-speech {
+      font-size: 0.98rem;
+      line-height: 1.4;
+    }
+
+    /* Cuadrícula de números */
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .num-card {
+      background: #faf9ff;
+      border: 2px solid #e6e3fc;
+      border-radius: 20px;
+      padding: 16px 12px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .num-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+    }
+
+    .num-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 900;
+      border-radius: 16px;
+      margin-bottom: 8px;
+    }
+
+    .num-visual {
+      font-size: 1.15rem;
+      min-height: 28px;
+      margin-bottom: 6px;
+      letter-spacing: 2px;
+    }
+
+    .num-en {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .num-es {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .btn-audio {
+      background: #eceaff;
+      color: var(--primary);
+      border: 1.5px solid #c9c3fa;
+      border-radius: 10px;
+      padding: 6px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: 0.2s;
+    }
+    .btn-audio:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Botón principal */
+    .btn-primary {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 15px 22px;
+      border-radius: 16px;
+      font-size: 1.08rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-primary:disabled {
+      background: #c5c1f5;
+      cursor: not-allowed;
+    }
+
+    /* Sección Quiz */
+    .hidden { display: none; }
+
+    .question-box {
+      background: #faf9ff;
+      border: 2px solid #e6e3fc;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .question-title {
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .option-btn {
+      background: #fff;
+      border: 2px solid #dcd8fa;
+      border-radius: 14px;
+      padding: 12px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .option-btn:hover { border-color: var(--primary); background: #f3f1ff; }
+    .option-btn.correct {
+      background: #d8f8f4;
+      border-color: var(--success);
+      color: #0b6e64;
+    }
+    .option-btn.wrong {
+      background: #ffe3e7;
+      border-color: var(--danger);
+      color: #9e0b1c;
+    }
+
+    .feedback-msg {
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    /* Celebración */
+    .celebrate-box {
+      text-align: center;
+      padding: 20px 10px;
+    }
+    .celebrate-box img {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <div class="top-bar">
+      <a href="preview.html#learning" class="btn-back">← Volver al mapa</a>
+      <div class="progress-wrap" aria-label="Progreso de la unidad">
+        <div class="progress-fill" id="unitProgress"></div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 1: EXPLICACIÓN INICIAL -->
+    <section class="lesson-card" id="section-learn">
+      <p class="kicker">UNIDAD 2 DE 5 • NUMBERS</p>
+      <h1>¡Aprendamos a contar en inglés! 🔢</h1>
+      <p class="subtitle">Los números nos sirven para contar juguetes, decir nuestra edad y jugar. Observa las estrellas y presiona <strong>Escuchar</strong> en cada número.</p>
+
+      <div class="mascot-banner">
+        <img src="assets/mascots/molang-happy.png" alt="Mascota Molang contando" onerror="this.style.display='none'">
+        <div class="mascot-speech">
+          <strong>¡Hola! Soy Molang.</strong><br>
+          Vamos a practicar los números del <strong>1 al 10</strong> en inglés. ¡Cuenta las estrellitas de cada tarjeta y repite su nombre en voz alta!
+        </div>
+      </div>
+
+      <div class="numbers-grid">
+        <article class="num-card">
+          <div class="num-badge">1</div>
+          <div class="num-visual">⭐</div>
+          <div class="num-en">One</div>
+          <div class="num-es">Uno</div>
+          <button class="btn-audio" type="button" onclick="speak('One')">🔊 Escuchar</button>
+        </article>
+
+        <article class="num-card">
+          <div class="num-badge">2</div>
+          <div class="num-visual">⭐⭐</div>
+          <div class="num-en">Two</div>
+          <div class="num-es">Dos</div>
+          <button class="btn-audio" type="button" onclick="speak('Two')">🔊 Escuchar</button>
+        </article>
+
+        <article class="num-card">
+          <div class="num-badge">3</div>
+          <div class="num-visual">⭐⭐⭐</div>
+          <div class="num-en">Three</div>
+          <div class="num-es">Tres</div>
+          <button class="btn-audio" type="button" onclick="speak('Three')">🔊 Escuchar</button>
+        </article>
+
+        <article class="num-card">
+          <div class="num-badge">4</div>
+          <div class="num-visual">⭐⭐⭐⭐</div>
+          <div class="num-en">Four</div>
+          <div class="num-es">Cuatro</div>
+          <button class="btn-audio" type="button" onclick="speak('Four')">🔊 Escuchar</button>
+        </article>
+
+        <article class="num-card">
+          <div class="num-badge">5</div>
+          <div class="num-visual">⭐⭐⭐⭐⭐</div>
+          <div class="num-en">Five</div>
+          <div class="num-es">Cinco</div>
+          <button class="btn-audio" type="button" onclick="speak('Five')">🔊 Escuchar</button>
+        </article>
+
+        <article class="num-card">
+          <div class="num-badge">6</div>
+          <div class="num-visual">🍎🍎🍎<br>🍎🍎🍎</div>
+          <div class="num-en">Six</div>
+          <div class="num-es">Seis</div>
+          <button class="btn-audio" type="button" onclick="speak('Six')">🔊 Escuchar</button>
+        </article>
+
+        <article class="num-card">
+          <div class="num-badge">7</div>
+          <div class="num-visual">🍎🍎🍎🍎<br>🍎🍎🍎</div>
+          <div class="num-en">Seven</div>
+          <div class="num-es">Siete</div>
+          <button class="btn-audio" type="button" onclick="speak('Seven')">🔊 Escuchar</button>
+        </article>
+
+        <article class="num-card">
+          <div class="num-badge">8</div>
+          <div class="num-visual">🍎🍎🍎🍎<br>🍎🍎🍎🍎</div>
+          <div class="num-en">Eight</div>
+          <div class="num-es">Ocho</div>
+          <button class="btn-audio" type="button" onclick="speak('Eight')">🔊 Escuchar</button>
+        </article>
+
+        <article class="num-card">
+          <div class="num-badge">9</div>
+          <div class="num-visual">🍎🍎🍎🍎🍎<br>🍎🍎🍎🍎</div>
+          <div class="num-en">Nine</div>
+          <div class="num-es">Nueve</div>
+          <button class="btn-audio" type="button" onclick="speak('Nine')">🔊 Escuchar</button>
+        </article>
+
+        <article class="num-card">
+          <div class="num-badge">10</div>
+          <div class="num-visual">🍎🍎🍎🍎🍎<br>🍎🍎🍎🍎🍎</div>
+          <div class="num-en">Ten</div>
+          <div class="num-es">Diez</div>
+          <button class="btn-audio" type="button" onclick="speak('Ten')">🔊 Escuchar</button>
+        </article>
+      </div>
+
+      <button class="btn-primary" type="button" onclick="goToQuiz()">¡Listo! Ir a las 3 preguntas →</button>
+    </section>
+
+    <!-- SECCIÓN 2: PRÁCTICA (3 PREGUNTAS SENCILLAS) -->
+    <section class="lesson-card hidden" id="section-quiz">
+      <p class="kicker">PRÁCTICA • UNIDAD 2</p>
+      <h1>¡A contar con Molang! 🎯</h1>
+      <p class="subtitle">Responde estas 3 preguntas sencillas sobre los números para avanzar a la Unidad 3.</p>
+
+      <div class="mascot-banner">
+        <img id="quizMascot" src="assets/mascots/molang-think.png" alt="Molang pensando" onerror="this.style.display='none'">
+        <div class="mascot-speech" id="mascotHint">
+          Cuenta los dibujos con tus deditos y elige el número correcto en inglés.
+        </div>
+      </div>
+
+      <!-- Pregunta 1 -->
+      <div class="question-box" id="q1">
+        <p class="question-title">1. ¿Cuántos cohetes ves aquí? 🚀 🚀 🚀</p>
+        <div class="options-grid">
+          <button class="option-btn" type="button" onclick="checkAnswer(1, this, false)">Two (2)</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(1, this, true)">Three (3)</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(1, this, false)">Five (5)</button>
+        </div>
+        <p class="feedback-msg" id="fb1"></p>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="question-box" id="q2">
+        <p class="question-title">2. Si tienes 5 dedos en una mano ✋, ¿cómo se dice 5 en inglés?</p>
+        <div class="options-grid">
+          <button class="option-btn" type="button" onclick="checkAnswer(2, this, true)">Five</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(2, this, false)">Four</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(2, this, false)">Seven</button>
+        </div>
+        <p class="feedback-msg" id="fb2"></p>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="question-box" id="q3">
+        <p class="question-title">3. Cuenta los globos: 🎈🎈🎈🎈🎈🎈🎈 ¿Qué número es?</p>
+        <div class="options-grid">
+          <button class="option-btn" type="button" onclick="checkAnswer(3, this, false)">Six (6)</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(3, this, false)">Eight (8)</button>
+          <button class="option-btn" type="button" onclick="checkAnswer(3, this, true)">Seven (7)</button>
+        </div>
+        <p class="feedback-msg" id="fb3"></p>
+      </div>
+
+      <button class="btn-primary" id="btnFinish" type="button" disabled onclick="finishUnit()">Completar Unidad 2 ⭐</button>
+    </section>
+
+    <!-- SECCIÓN 3: CELEBRACIÓN Y PASE DIRECTO A UNIDAD 3 -->
+    <section class="lesson-card hidden" id="section-done">
+      <div class="celebrate-box">
+        <img src="assets/mascots/molang-celebrate.png" alt="Molang celebrando" onerror="this.style.display='none'">
+        <p class="kicker">¡UNIDAD 2 COMPLETADA!</p>
+        <h1>¡Increíble, ya sabes contar! 🎉</h1>
+        <p class="subtitle">Dominaste los números del <strong>1 al 10</strong> en inglés. Ahora pasemos directo a la Unidad 3: <strong>Colors</strong>.</p>
+        <button class="btn-primary" type="button" onclick="window.location.href='colors.html'">Continuar a la Unidad 3: Colors →</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const answeredCorrectly = { 1: false, 2: false, 3: false };
+
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function goToQuiz() {
+      document.getElementById('section-learn').classList.add('hidden');
+      document.getElementById('section-quiz').classList.remove('hidden');
+      document.getElementById('unitProgress').style.width = '75%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function checkAnswer(qNum, btn, isCorrect) {
+      const box = document.getElementById('q' + qNum);
+      const fb = document.getElementById('fb' + qNum);
+      const mascotImg = document.getElementById('quizMascot');
+      const mascotHint = document.getElementById('mascotHint');
+
+      box.querySelectorAll('.option-btn').forEach(b => {
+        b.classList.remove('correct', 'wrong');
+      });
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        fb.textContent = '✅ ¡Excelente! Contaste muy bien.';
+        fb.style.color = '#0b6e64';
+        speak(btn.textContent.replace(/\s*\(\d+\)/, ''));
+        answeredCorrectly[qNum] = true;
+        mascotImg.src = 'assets/mascots/molang-happy.png';
+        mascotHint.innerHTML = '<strong>¡Súper!</strong> Ese es el número correcto.';
+      } else {
+        btn.classList.add('wrong');
+        fb.textContent = '❌ ¡Ups! Vuelve a contar e inténtalo de nuevo.';
+        fb.style.color = '#9e0b1c';
+        answeredCorrectly[qNum] = false;
+        mascotImg.src = 'assets/mascots/molang-encourage.png';
+        mascotHint.innerHTML = '<strong>¡Tú puedes!</strong> Revisa los números del 1 al 10.';
+      }
+
+      const allDone = answeredCorrectly[1] && answeredCorrectly[2] && answeredCorrectly[3];
+      document.getElementById('btnFinish').disabled = !allDone;
+    }
+
+    function finishUnit() {
+      try {
+        const saved = JSON.parse(sessionStorage.getItem('englishWorldProgress') || '{"unlocked":0}');
+        if ((saved.unlocked || 0) < 2) {
+          saved.unlocked = 2;
+          sessionStorage.setItem('englishWorldProgress', JSON.stringify(saved));
+        }
+      } catch (e) {}
+
+      document.getElementById('section-quiz').classList.add('hidden');
+      document.getElementById('section-done').classList.remove('hidden');
+      document.getElementById('unitProgress').style.width = '100%';
+      speak('Awesome! You completed unit two!');
+    }
+  </script>
+</body>
+</html>

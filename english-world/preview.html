@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#6558e8"><title>English World | Vista previa</title>
+  <link rel="stylesheet" href="preview.css"><script src="preview.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <div class="progress-top" aria-label="Progreso de configuración"><span id="progressBar"></span></div>
+    <section class="screen welcome active" id="screen-start">
+      <div class="welcome-card welcome-new">
+        <header class="welcome-brand"><span class="welcome-earth" aria-hidden="true">🌎</span><div><p class="welcome-brand-name">ENGLISH WORLD</p><p class="welcome-tagline">¡Tu aventura para aprender inglés!</p></div></header>
+        <div class="welcome-illustration">
+          <img class="welcome-children-image" src="https://clipart-library.com/2023/children-reading-books-white-background_1308-95363.jpg" alt="Ilustración infantil de niños aprendiendo inglés con libros, letras del alfabeto y un globo terráqueo" loading="eager">
+        </div>
+        <h1>¡Aprende inglés!</h1>
+        <p class="subtitle">Descubre nuevas palabras, practica tu pronunciación y supera divertidos retos mientras aprendes inglés a tu ritmo.</p>
+        <button class="btn primary" data-go="learning">¡Empezar mi aventura! <span aria-hidden="true">→</span></button>
+        <p class="welcome-footer"></p>
+      </div>
+    </section>
+
+    <section class="screen route-only" id="screen-learning" aria-labelledby="learningTitle">
+      <div class="step-card learning-card">
+        <div class="learning-heading"><div><p class="kicker">ENGLISH WORLD</p><h1 id="learningTitle">Nivel 1 de 5</h1></div></div>
+        <p class="subtitle learning-subtitle">Avanza por el camino, completa las actividades y desbloquea nuevas unidades.</p>
+        <div class="learning-layout">
+          <aside class="learning-map" aria-label="Ruta de aprendizaje">
+            <div class="unit-node current" data-unit="0"><span class="node-number">1</span><div><strong>Hello!</strong><small>Disponible</small></div><button class="unit-open" data-open-unit="0">Empezar</button></div>
+            <div class="path-line"></div>
+            <div class="unit-node locked" data-unit="1"><span class="node-number">2</span><div><strong>Numbers</strong><small>Bloqueado</small></div><span class="lock-icon">🔒</span></div>
+            <div class="path-line"></div>
+            <div class="unit-node locked" data-unit="2"><span class="node-number">3</span><div><strong>Colors</strong><small>Bloqueado</small></div><span class="lock-icon">🔒</span></div>
+            <div class="path-line"></div>
+            <div class="unit-node locked" data-unit="3"><span class="node-number">4</span><div><strong>Animals</strong><small>Bloqueado</small></div><span class="lock-icon">🔒</span></div>
+            <div class="path-line"></div>
+            <div class="unit-node locked" data-unit="4"><span class="node-number">5</span><div><strong>Food</strong><small>Bloqueado</small></div><span class="lock-icon">🔒</span></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
